@@ -56,7 +56,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: "franklin-gothic-urw-cond",sans-serif;
+    font-family: "franklin-gothic-urw-cond",sans-serif;
 }
 
 /* Labels */
@@ -73,6 +73,13 @@ h1, h2, h3, h4 {
 .label-ndp {
     background-color: @labelNdp;
 }
+.label a:link, .label a:visited {
+    color: white;
+}
+.label a:hover {
+    text-decoration: underline;
+}
+
 
 header {
     background: url('../img/tyee-logo.png') rgba(255,255,255,0.35) no-repeat 10px 10px;
@@ -92,17 +99,17 @@ header #map {
 }
 
 .table-bordered {
-  -webkit-border-top-left-radius:0px 0px 4px 4px;
-  border-radius: 0px 0px 4px 4px;
-  -moz-border-radius: 0px 0px 4px 4px;
+    -webkit-border-top-left-radius:0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px;
+    -moz-border-radius: 0px 0px 4px 4px;
 } 
 .table-bordered caption + thead tr:first-child th:first-child,
 .table-bordered caption + tbody tr:first-child td:first-child,
 .table-bordered colgroup + thead tr:first-child th:first-child,
 .table-bordered colgroup + tbody tr:first-child td:first-child {
-  -webkit-border-top-left-radius: 0px;
-  border-top-left-radius: 0px;
-  -moz-border-radius-topleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-topleft: 0px;
 }
 
 table caption {
@@ -250,7 +257,7 @@ body#front header h1 {
     padding: 0;
     color: white; 
     text-align: center;
-   
+
 }
 
 #section-title h2 {
@@ -386,7 +393,7 @@ form#riding-search-mobile {
 // Responsive: Up to landscape phone
 // --------------------------------------------------
 @media (max-width: 480px) {
-     header {
+    header {
         background: url('../img/tyee-logo.png') rgba(255,255,255,0.4) no-repeat center 10px;
     }
 }
