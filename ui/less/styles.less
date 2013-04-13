@@ -13,6 +13,7 @@
 @limeGreen: #7FAD17;
 @gray: #7A7979;
 @lightGray: rgb(240,240,240);
+@mediumGray: rgb(200,200,200);
 @bodyText: #303030;
 @bodyHead: #141414;
 @authorText: #568C00;
@@ -355,6 +356,20 @@ form#riding-search-mobile {
     margin-bottom: 0px;
 }
 
+.nav {
+    float: left;
+    margin-bottom: 0px;
+}
+.nav-tabs>li, .nav-pills>li{
+    margin-right: 10px;
+}
+.nav a {
+    color: @darkBlue;
+}
+.nav-pills>.active>a, .nav-pills>.active>a:hover {
+    color: white;
+    background-color: @darkBlue;
+}
 #sharing {
     margin: 4px 0 4px 0;
 }
@@ -363,6 +378,102 @@ form#riding-search-mobile {
     margin: 0 0 0 4px;
     padding: 0;
 }
+/* Candidates */
+body#candidates header {
+    background: url('../img/tyee-logo.png') white no-repeat center 10px;
+}
+#quickstats h3 {
+    line-height: 1.2em;
+}
+#quickstats {
+    padding: 0 10px 10px 20px;
+}
+#quickstats ul {
+    border-top: 1px solid @mediumGray; 
+    margin: 0 10px 20px 0;
+}
+
+.chartlist li { 
+  border-bottom: 1px solid @mediumGray; 
+  background: @lightGray;
+  display: block; 
+  position: relative;
+}
+.chartlist .count { 
+  color: @gray; 
+  display: block; 
+  font-size: 0.875em;
+  margin: 0 0.3em; 
+  position: absolute; 
+  text-align: right; 
+  top: 0; 
+  right: 0; 
+  z-index: 1; 
+}
+.chartlist li i { 
+  color: black;
+  display: block; 
+  font-style: normal;
+  padding: 2px 10px 2px 4px;
+  //padding: 0.2em 2.5em 0.2em 0.5em;
+  position: relative; 
+  z-index: 2; 
+}
+.chartlist .index { 
+  background: @mediumGray; 
+  display: block; 
+  height: 100%; 
+  left: 0; 
+  overflow: hidden; 
+  position: absolute; 
+  text-indent: -9999px; 
+  top: 0; 
+}
+dl.candidates
+{
+	float: left;
+	width: 95%;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #999;
+}
+	
+.candidates dt
+{
+	float: left;
+	width: 100%;
+	margin: 0;
+        padding: 4px 0 0 0;
+	border-top: 1px solid @lightGray;
+	font-weight: bold;
+}
+	
+.candidates dd
+{
+	float: left;
+	width: 100%;
+	margin: 0;
+        padding: 0;
+}
+
+/* Poll */
+#poll-promo {
+    background: #f0f0f0 url('http://thetyee.ca/ui/img/poll-electionguide-bottom.png') left bottom no-repeat;
+    padding-bottom: 80px;
+}
+#poll-promo-header {
+    background: url('http://thetyee.ca/ui/img/poll-electionguide-top.png') left top no-repeat;
+    padding-top: 60px;
+}
+
+#poll-promo .content {
+    padding: 0 10px 10px 10px;
+    margin: 0;
+}
+#poll-promo .content h3 {
+    line-height: 1.2em;
+}
+
 // Responsive: Large desktop and up
 // --------------------------------------------------
 @media (min-width: 1200px) {
