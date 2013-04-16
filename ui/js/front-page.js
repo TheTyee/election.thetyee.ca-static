@@ -186,7 +186,7 @@ function districts_for_geocoder_result(result) {
         }
         $.each(data, function (index) {
             if ( this.boundary_set_name == 'British Columbia electoral district' ) {
-                var link = this.name.toLowerCase().replace(' ', '-', "gi");
+                var link = this.name.toLowerCase().replace(/\s/g, "-");
                 message_div.append('<p>Your riding is <a href="/riding/' + link + '">' + this.name + ', visit the riding profile</a>.</p>').removeClass("alert-warning").addClass("alert alert-success");
                 map.setView([lat, lng], 14);
             }
