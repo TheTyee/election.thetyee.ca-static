@@ -68,6 +68,16 @@ a {
     color: @darkBlue;
 }
 
+a:hover {
+    background: @darkBlue;
+    color: white;
+    text-decoration: none;
+}
+
+#riding-summary a, table#ridings-table .reasoning a {
+    border-bottom: 1px dotted @darkBlue;
+}
+
 /* Labels */
 
 .label-liberal {
@@ -390,7 +400,7 @@ hr.nav-sep {
     padding: 0;
 }
 /* Candidates */
-body#candidates header {
+body#candidates header, body#ridings header {
     background: url('../img/tyee-logo.png') white no-repeat center 10px;
 }
 #quickstats h3 {
