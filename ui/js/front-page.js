@@ -1,28 +1,29 @@
 // Leaflet
 var map = L.map('map', { doubleClickZoom: false } ).setView([52.2385, -123.1185], 6);
-    L.tileLayer('http://{s}.tile.cloudmade.com/8df2e4e99eb94de2a136db10bf4e9afa/997/256/{z}/{x}/{y}.png', {
-}).addTo(map);
+L.tileLayer('http://{s}.tile.cloudmade.com/8df2e4e99eb94de2a136db10bf4e9afa/997/256/{z}/{x}/{y}.png', {
+        }).addTo(map);
 
 // Leaflet Locate Control plug-in
 // https://github.com/domoritz/leaflet-locatecontrol
 L.control.locate().addTo(map);
 
-// Polygon highlight styles
-var style = {
-    weight: 2,
-    color: 'black',
-    opacity: 0.2,
-    fillColor: '#fff',
-    fillOpacity: 0.5
-};
+function getOpacity(c) {
+    return c == 'Definitely' ? '0.8' :
+        c == 'Likely'     ? '0.5' :
+        '0.1';
+}
 
-var styleHighlight = {
-    weight: 2,
-    color: '#666',
-    dashArray: '',
-    fillColor: '#A8D14B',
-    fillOpacity: 0.7
-};
+
+function style(feature) {
+    return {
+        weight: 2,
+            dashArray: '',                                
+            opacity: 0.2,
+            color: 'black',
+            fillOpacity: '0.8', //getOpacity(feature.properties.call),
+            fillColor: ( feature.properties.party ? feature.properties.party.colour : 'rgba(255,255,255,.1)' )
+    };
+}
 
 // Get the riding data from our local file
 var geojson;
@@ -53,9 +54,9 @@ info.onAdd = function (map) {
 };
 info.update = function ( properties ) {
     this._div.innerHTML = (properties ?
-            '<h4>' + properties.name + '</h4><p><strong>Click</strong> to learn more about the riding</p><p><strong>TYEE CALL:</strong> Stay tuned.'
+            '<h4>' + properties.name + '</h4><p><strong>Tyee call:</strong> ' + properties.call + ( properties.party ? ' <span class="label label-' + properties.party.slug + '" style="background-color: ' + properties.party.colour + ';">' + properties.party.shortname + '<span>' : '' ) + '<p>' + properties.reason + ' Click to read more.</p>'
             : '<p><h4>Welcome to Tyee’s riding-by-riding source for election issues and action.</h4></p>' +
-            '<p>Click on a riding for candidate info, fast facts and related Tyee reporting. Updated as stories break, so keep checking in. We want your input. See below.</p>' +
+            '<p>Click on a riding for candidate info, fast facts and Tyee\'s winner forecast. Updated as stories break, so keep checking in. We want your input. See below.</p>' +
             '<p><a href="#riding-list">Scroll down</a> for a list of ridings</p>' +
             '<p>Zoom to <a href="#" onClick="event.preventDefault();zoomToRegion(vancouver);">Lower Mainland ridings</a>.</p>' +
             '<p>Zoom to <a href="#" onClick="event.preventDefault();zoomToRegion(victoria);">Victoria-area ridings</a>.</p>'
@@ -65,12 +66,12 @@ info.addTo(map);
 
 // Leaflet control for riding search
 var search = L.control({ 
-        //position: 'bottomleft' 
+    //position: 'bottomleft' 
 });
 search.onAdd = function (map) {
     var div  = L.DomUtil.create('div', 'search');
     this._div = div 
-    this.update();
+        this.update();
     L.DomEvent.disableClickPropagation(this._div);
     return this._div;
 };
@@ -88,15 +89,16 @@ search.addTo(map);
 // Turn on/off polygon highlighting
 function highlightFeature(e) {
     var layer = e.target;
-    layer.setStyle(styleHighlight);
+    layer.setStyle({
+        weight: 5,
+    });
     if (!L.Browser.ie && !L.Browser.opera) {
         layer.bringToFront();
     }
     info.update(layer.feature.properties);
 }
 function resetHighlight(e) {
-    var layer = e.target;
-    layer.setStyle(style);
+    geojson.resetStyle(e.target);
     info.update();
 }
 
@@ -112,8 +114,8 @@ function goToRidingProfile(e) {
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
-        mouseout:  resetHighlight,
-        click:     goToRidingProfile,
+    mouseout:  resetHighlight,
+    click:     goToRidingProfile,
     });
 };
 
