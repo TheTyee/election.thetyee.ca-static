@@ -54,9 +54,9 @@ info.onAdd = function (map) {
 };
 info.update = function ( properties ) {
     this._div.innerHTML = (properties ?
-            '<h4>' + properties.name + '</h4><p><strong>Tyee call:</strong> ' + properties.call + ( properties.party ? ' <span class="label label-' + properties.party.slug + '" style="background-color: ' + properties.party.colour + ';">' + properties.party.shortname + '<span>' : '' ) + '<p>' + properties.reason + ' Click to read more.</p>'
+            '<h4>' + properties.name + '</h4><p><strong>Winner:</strong> ' + properties.winner.fullname + ( properties.party ? ' <span class="label label-' + properties.party.slug + '" style="background-color: ' + properties.party.colour + ';">' + properties.party.shortname + '<span>' : '' ) + '<p>' + properties.win_copy + ' Click to read more.</p>'
             : '<p><h4>Welcome to Tyee’s riding-by-riding source for election issues and action.</h4></p>' +
-            '<p>Click on a riding for candidate info, fast facts and Tyee\'s winner forecast. Updated as stories break, so keep checking in. We want your input. See below.</p>' +
+            '<p>Now updated to reflect the winners of the 2013 B.C. election. Click a riding for fast facts, related stories and more.</p>' +
             '<p><a href="#riding-list">Scroll down</a> for a list of ridings</p>' +
             '<p>Zoom to <a href="#" onClick="event.preventDefault();zoomToRegion(vancouver);">Lower Mainland ridings</a>.</p>' +
             '<p>Zoom to <a href="#" onClick="event.preventDefault();zoomToRegion(victoria);">Victoria-area ridings</a>.</p>'
