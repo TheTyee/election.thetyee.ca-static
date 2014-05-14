@@ -1,6 +1,6 @@
 // Leaflet
 var map = L.map('map', { doubleClickZoom: false } ).setView([52.2385, -123.1185], 6);
-L.tileLayer('http://{s}.tile.cloudmade.com/8df2e4e99eb94de2a136db10bf4e9afa/997/256/{z}/{x}/{y}.png', {
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         }).addTo(map);
 
 // Leaflet Locate Control plug-in
